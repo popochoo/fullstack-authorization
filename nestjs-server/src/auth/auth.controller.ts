@@ -10,9 +10,8 @@ import {
 import { Request, Response } from 'express'
 
 import { AuthService } from './auth.service'
-
-import { RegisterDto } from './dto/register.dto'
 import { LoginDto } from './dto/login.dto'
+import { RegisterDto } from './dto/register.dto'
 
 @Controller('auth')
 export class AuthController {
@@ -32,7 +31,10 @@ export class AuthController {
 
 	@Post('logout')
 	@HttpCode(HttpStatus.OK)
-	public async logout(@Req() req: Request, @Res({ passthrough: true}) res: Response) {
+	public async logout(
+		@Req() req: Request,
+		@Res({ passthrough: true }) res: Response
+	) {
 		return this.authService.logout(req, res)
 	}
 }
