@@ -1,5 +1,4 @@
 import { Injectable, NotFoundException } from '@nestjs/common'
-
 import { hash } from 'argon2'
 import { AuthMethod } from 'prisma/__generated__/enums'
 
