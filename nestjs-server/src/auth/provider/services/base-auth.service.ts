@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common'
 
 import { TypeBaseProviderOptions } from './types/base-provider.options.types'
+import { ITokenResponse } from './types/tokens.interface'
 import { TypeUserInfo } from './types/user-info.types'
 
 @Injectable()
@@ -14,6 +15,8 @@ export class BaseOAuthService {
 	public constructor(private readonly options: TypeBaseProviderOptions) {}
 
 	protected async extractUserInfo(data: any): Promise<TypeUserInfo> {
+		console.log(data)
+
 		return {
 			...data,
 			provider: this.options.name
@@ -60,7 +63,7 @@ export class BaseOAuthService {
 			)
 		}
 
-		const tokens = await tokenRequest.json()
+		const tokens = (await tokenRequest.json()) as ITokenResponse
 
 		if (!tokens) {
 			throw new BadRequestException(
@@ -80,7 +83,7 @@ export class BaseOAuthService {
 			)
 		}
 
-		const user = await userRequest.json()
+		const user = (await userRequest.json()) as Record<string, any>
 		const userData = await this.extractUserInfo(user)
 
 		return {
