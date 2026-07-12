@@ -35,7 +35,7 @@ export class PasswordRecoveryService {
 			existingUser.email
 		)
 
-		await this.mailService.sendPasswordResetEamil(
+		await this.mailService.sendPasswordResetEmail(
 			passwordResetToken.email,
 			passwordResetToken.token
 		)
