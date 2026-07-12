@@ -7,7 +7,7 @@ interface ConfirmationTemplateProps {
     token: string
 }
 
-export function ConfirmationTemplate({ domain, token}: ConfirmationTemplateProps) {
+export function ConfirmationTemplate({ domain, token }: ConfirmationTemplateProps) {
     const confirmLink = `${domain}/auth/new-verification?token=${token}`
 
     return (
