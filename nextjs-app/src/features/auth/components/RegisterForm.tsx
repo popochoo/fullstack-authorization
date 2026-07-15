@@ -4,19 +4,25 @@ import { RegisterSchema, TypeRegisterSchema } from '../schemes'
 import { AuthWrapper } from './AuthWrapper'
 
 import { useForm } from 'react-hook-form'
+import ReCAPTCHA from 'react-google-recaptcha'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
 	Button,
 	Field,
-	FieldDescription,
 	FieldError,
 	FieldGroup,
 	FieldLabel,
 	FieldSet,
 	Input
 } from '@/shared/components/ui'
+import { useTheme } from 'next-themes'
+import { useState } from 'react'
+import { toast } from 'sonner'
 
 export function RegisterForm() {
+	const { theme } = useTheme()
+	const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null)
+
 	const {
 		register,
 		handleSubmit,
@@ -32,7 +38,11 @@ export function RegisterForm() {
 	})
 
 	const onSubmit = (values: TypeRegisterSchema) => {
-		console.log(values)
+		if (recaptchaValue) {
+			console.log(values)
+		} else {
+			toast.error('Пожалуйста, завершите reCAPTCHA')
+		}
 	}
 
 	return (
@@ -45,7 +55,7 @@ export function RegisterForm() {
 		>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className='w-full text-left'
+				className='jus w-full space-y-3.5 text-left'
 			>
 				<FieldGroup>
 					<FieldSet>
@@ -115,6 +125,23 @@ export function RegisterForm() {
 							</Field>
 						</FieldGroup>
 					</FieldSet>
+
+					<div className='my-2 flex w-full justify-center'>
+						{/* Контейнер-маска, обрезающий белые пиксели фрейма */}
+						<div className='relative h-[76px] w-[302px] overflow-hidden rounded-[4px] border border-transparent shadow-[0_0_2px_1px_rgba(0,0,0,0.15)] dark:shadow-[0_0_2px_1px_rgba(0,0,0,0.5)]'>
+							<div className='absolute -top-[1px] -left-[1px] h-[78px] w-[304px]'>
+								<ReCAPTCHA
+									sitekey={
+										process.env
+											.NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY as string
+									}
+									onChange={setRecaptchaValue}
+									theme={theme === 'dark' ? 'dark' : 'light'}
+								/>
+							</div>
+						</div>
+					</div>
+
 					<Field orientation={'horizontal'} className='mt-4'>
 						<Button type='submit' className='w-full cursor-pointer'>
 							Создать аккаунт

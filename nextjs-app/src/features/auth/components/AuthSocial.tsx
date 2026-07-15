@@ -19,7 +19,7 @@ export function AuthSocial() {
 				<div className='absolute inset-0 flex items-center'>
 					<span className='border-border w-full border-t' />
 				</div>
-				<span className='bg-background text-muted-foreground relative px-3 text-xs uppercase'>
+				<span className='bg-card text-muted-foreground relative px-3 text-xs uppercase'>
 					или
 				</span>
 			</div>

@@ -16,7 +16,7 @@ export function ToggleTheme() {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger
-				className='absolute top-5 left-5'
+				className='absolute top-5 left-5 z-50'
 				render={
 					<Button variant={'outline'} size={'icon'}>
 						<Sun className='h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:rotate-90' />

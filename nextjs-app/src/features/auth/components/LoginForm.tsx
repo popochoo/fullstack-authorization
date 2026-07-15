@@ -14,8 +14,15 @@ import {
 	FieldSet,
 	Input
 } from '@/shared/components/ui'
+import { useTheme } from 'next-themes'
+import { useState } from 'react'
+import { toast } from 'sonner'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 export function LoginForm() {
+	const { theme } = useTheme()
+	const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null)
+
 	const {
 		register,
 		handleSubmit,
@@ -30,7 +37,11 @@ export function LoginForm() {
 	})
 
 	const onSubmit = (values: TypeLoginSchema) => {
-		console.log(values)
+		if (recaptchaValue) {
+			console.log(values)
+		} else {
+			toast.error('Пожалуйста, завершите reCAPTCHA')
+		}
 	}
 
 	return (
@@ -97,6 +108,21 @@ export function LoginForm() {
 							</Field>
 						</FieldGroup>
 					</FieldSet>
+					<div className='my-2 flex w-full justify-center'>
+						{/* Контейнер-маска, обрезающий белые пиксели фрейма */}
+						<div className='relative h-[76px] w-[302px] overflow-hidden rounded-[4px] border border-transparent shadow-[0_0_2px_1px_rgba(0,0,0,0.15)] dark:shadow-[0_0_2px_1px_rgba(0,0,0,0.5)]'>
+							<div className='absolute -top-[1px] -left-[1px] h-[78px] w-[304px]'>
+								<ReCAPTCHA
+									sitekey={
+										process.env
+											.NEXT_PUBLIC_GOOGLE_RECAPTCHA_SITE_KEY as string
+									}
+									onChange={setRecaptchaValue}
+									theme={theme === 'dark' ? 'dark' : 'light'}
+								/>
+							</div>
+						</div>
+					</div>
 					<Field orientation={'horizontal'} className='mt-4'>
 						<Button type='submit' className='w-full cursor-pointer'>
 							Войти в аккаунт
