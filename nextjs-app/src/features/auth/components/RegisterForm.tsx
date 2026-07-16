@@ -18,6 +18,7 @@ import {
 import { useTheme } from 'next-themes'
 import { useState } from 'react'
 import { toast } from 'sonner'
+import { useRegisterMutation } from '../hooks'
 
 export function RegisterForm() {
 	const { theme } = useTheme()
@@ -37,9 +38,11 @@ export function RegisterForm() {
 		}
 	})
 
+	const { registerMutate, isLoadingRegister } = useRegisterMutation()
+
 	const onSubmit = (values: TypeRegisterSchema) => {
 		if (recaptchaValue) {
-			console.log(values)
+			registerMutate({ values, recaptcha: recaptchaValue })
 		} else {
 			toast.error('Пожалуйста, завершите reCAPTCHA')
 		}
@@ -68,6 +71,7 @@ export function RegisterForm() {
 									id='register-name'
 									placeholder='Иван'
 									{...register('name')}
+									disabled={isLoadingRegister}
 								/>
 								{errors.name && (
 									<FieldError>
@@ -84,6 +88,7 @@ export function RegisterForm() {
 									type='email'
 									placeholder='email@example.com'
 									{...register('email')}
+									disabled={isLoadingRegister}
 								/>
 								{errors.email && (
 									<FieldError>
@@ -100,6 +105,7 @@ export function RegisterForm() {
 									type='password'
 									placeholder='••••••••'
 									{...register('password')}
+									disabled={isLoadingRegister}
 								/>
 								{errors.password && (
 									<FieldError>
@@ -116,6 +122,7 @@ export function RegisterForm() {
 									type='password'
 									placeholder='••••••••'
 									{...register('passwordRepeat')}
+									disabled={isLoadingRegister}
 								/>
 								{errors.passwordRepeat && (
 									<FieldError>
@@ -143,7 +150,11 @@ export function RegisterForm() {
 					</div>
 
 					<Field orientation={'horizontal'} className='mt-4'>
-						<Button type='submit' className='w-full cursor-pointer'>
+						<Button
+							type='submit'
+							className='w-full cursor-pointer'
+							disabled={isLoadingRegister}
+						>
 							Создать аккаунт
 						</Button>
 					</Field>

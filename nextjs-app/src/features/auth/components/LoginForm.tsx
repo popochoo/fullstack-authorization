@@ -18,6 +18,7 @@ import { useTheme } from 'next-themes'
 import { useState } from 'react'
 import { toast } from 'sonner'
 import ReCAPTCHA from 'react-google-recaptcha'
+import { useLoginMutation } from '../hooks'
 
 export function LoginForm() {
 	const { theme } = useTheme()
@@ -30,15 +31,16 @@ export function LoginForm() {
 	} = useForm<TypeLoginSchema>({
 		resolver: zodResolver(LoginSchema),
 		defaultValues: {
-			name: '',
 			email: '',
 			password: ''
 		}
 	})
 
+	const { loginMutate, isLoadingLogin } = useLoginMutation()
+
 	const onSubmit = (values: TypeLoginSchema) => {
 		if (recaptchaValue) {
-			console.log(values)
+			loginMutate({ values, recaptcha: recaptchaValue })
 		} else {
 			toast.error('Пожалуйста, завершите reCAPTCHA')
 		}
@@ -60,21 +62,6 @@ export function LoginForm() {
 					<FieldSet>
 						<FieldGroup>
 							<Field>
-								<FieldLabel htmlFor='register-name'>
-									Имя
-								</FieldLabel>
-								<Input
-									id='register-name'
-									placeholder='Иван'
-									{...register('name')}
-								/>
-								{errors.name && (
-									<FieldError>
-										{errors.name.message}
-									</FieldError>
-								)}
-							</Field>
-							<Field>
 								<FieldLabel htmlFor='register-email'>
 									Почта
 								</FieldLabel>
@@ -83,6 +70,7 @@ export function LoginForm() {
 									type='email'
 									placeholder='email@example.com'
 									{...register('email')}
+									disabled={isLoadingLogin}
 								/>
 								{errors.email && (
 									<FieldError>
@@ -99,6 +87,7 @@ export function LoginForm() {
 									type='password'
 									placeholder='••••••••'
 									{...register('password')}
+									disabled={isLoadingLogin}
 								/>
 								{errors.password && (
 									<FieldError>
@@ -124,7 +113,11 @@ export function LoginForm() {
 						</div>
 					</div>
 					<Field orientation={'horizontal'} className='mt-4'>
-						<Button type='submit' className='w-full cursor-pointer'>
+						<Button
+							type='submit'
+							className='w-full cursor-pointer'
+							disabled={isLoadingLogin}
+						>
 							Войти в аккаунт
 						</Button>
 					</Field>
