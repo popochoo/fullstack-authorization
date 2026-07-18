@@ -24,6 +24,7 @@ import Link from 'next/link'
 export function LoginForm() {
 	const { theme } = useTheme()
 	const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null)
+	const [isShowTwoFactor, setIsShowTwoFactor] = useState(false)
 
 	const {
 		register,
@@ -37,7 +38,7 @@ export function LoginForm() {
 		}
 	})
 
-	const { loginMutate, isLoadingLogin } = useLoginMutation()
+	const { loginMutate, isLoadingLogin } = useLoginMutation(setIsShowTwoFactor)
 
 	const onSubmit = (values: TypeLoginSchema) => {
 		if (recaptchaValue) {
@@ -61,53 +62,70 @@ export function LoginForm() {
 			>
 				<FieldGroup>
 					<FieldSet>
-						<FieldGroup>
-							<Field>
-								<FieldLabel htmlFor='register-email'>
-									Почта
-								</FieldLabel>
-								<Input
-									id='register-email'
-									type='email'
-									placeholder='email@example.com'
-									{...register('email')}
-									disabled={isLoadingLogin}
-								/>
-								{errors.email && (
-									<FieldError>
-										{errors.email.message}
-									</FieldError>
-								)}
-							</Field>
-							<Field>
-								<div className='mb-1 flex w-full items-center justify-between'>
-									<FieldLabel
-										htmlFor='login-password'
-										className='mb-0'
-									>
-										Пароль
+						{isShowTwoFactor && (
+							<FieldGroup>
+								<Field>
+									<FieldLabel htmlFor='register-code'>
+										Код
 									</FieldLabel>
-									<Link
-										href='/auth/reset-password' // Проверьте правильность вашего роута восстановления
-										className='text-muted-foreground hover:text-primary text-sm underline-offset-4 transition-colors hover:underline'
-									>
-										Забыли пароль?
-									</Link>
-								</div>
-								<Input
-									id='register-password'
-									type='password'
-									placeholder='••••••••'
-									{...register('password')}
-									disabled={isLoadingLogin}
-								/>
-								{errors.password && (
-									<FieldError>
-										{errors.password.message}
-									</FieldError>
-								)}
-							</Field>
-						</FieldGroup>
+									<Input
+										id='register-code'
+										type='code'
+										placeholder='123456'
+										{...register('code')}
+									/>
+								</Field>
+							</FieldGroup>
+						)}
+						{!isShowTwoFactor && (
+							<FieldGroup>
+								<Field>
+									<FieldLabel htmlFor='register-email'>
+										Почта
+									</FieldLabel>
+									<Input
+										id='register-email'
+										type='email'
+										placeholder='email@example.com'
+										{...register('email')}
+										disabled={isLoadingLogin}
+									/>
+									{errors.email && (
+										<FieldError>
+											{errors.email.message}
+										</FieldError>
+									)}
+								</Field>
+								<Field>
+									<div className='mb-1 flex w-full items-center justify-between'>
+										<FieldLabel
+											htmlFor='login-password'
+											className='mb-0'
+										>
+											Пароль
+										</FieldLabel>
+										<Link
+											href='/auth/reset-password' // Проверьте правильность вашего роута восстановления
+											className='text-muted-foreground hover:text-primary text-sm underline-offset-4 transition-colors hover:underline'
+										>
+											Забыли пароль?
+										</Link>
+									</div>
+									<Input
+										id='register-password'
+										type='password'
+										placeholder='••••••••'
+										{...register('password')}
+										disabled={isLoadingLogin}
+									/>
+									{errors.password && (
+										<FieldError>
+											{errors.password.message}
+										</FieldError>
+									)}
+								</Field>
+							</FieldGroup>
+						)}
 					</FieldSet>
 					<div className='my-2 flex w-full justify-center'>
 						{/* Контейнер-маска, обрезающий белые пиксели фрейма */}
