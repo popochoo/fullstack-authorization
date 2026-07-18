@@ -1,6 +1,6 @@
 'use client'
 
-import { LoginSchema, TypeLoginSchema } from '../schemes'
+import { NewPasswordSchema, TypeNewPasswordSchema } from '../schemes'
 import { AuthWrapper } from './AuthWrapper'
 
 import { useForm } from 'react-hook-form'
@@ -18,10 +18,9 @@ import { useTheme } from 'next-themes'
 import { useState } from 'react'
 import { toast } from 'sonner'
 import ReCAPTCHA from 'react-google-recaptcha'
-import { useLoginMutation } from '../hooks'
-import Link from 'next/link'
+import { useNewPasswordMutation } from '../hooks'
 
-export function LoginForm() {
+export function NewPasswordForm() {
 	const { theme } = useTheme()
 	const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null)
 
@@ -29,19 +28,18 @@ export function LoginForm() {
 		register,
 		handleSubmit,
 		formState: { errors }
-	} = useForm<TypeLoginSchema>({
-		resolver: zodResolver(LoginSchema),
+	} = useForm<TypeNewPasswordSchema>({
+		resolver: zodResolver(NewPasswordSchema),
 		defaultValues: {
-			email: '',
 			password: ''
 		}
 	})
 
-	const { loginMutate, isLoadingLogin } = useLoginMutation()
+	const { newMutate, isLoadingNew } = useNewPasswordMutation()
 
-	const onSubmit = (values: TypeLoginSchema) => {
+	const onSubmit = (values: TypeNewPasswordSchema) => {
 		if (recaptchaValue) {
-			loginMutate({ values, recaptcha: recaptchaValue })
+			newMutate({ values, recaptcha: recaptchaValue })
 		} else {
 			toast.error('Пожалуйста, завершите reCAPTCHA')
 		}
@@ -49,11 +47,10 @@ export function LoginForm() {
 
 	return (
 		<AuthWrapper
-			heading='Войти'
-			description='Чтобы войти на сайт введите ваш email и пароль'
-			backButtonLabel='Еще нет аккаунта? Регистрация'
-			backButtonHref='/auth/register'
-			isShowSocial
+			heading='Новый парль'
+			description='Придумайте новый пароль для вашего аккаунта'
+			backButtonLabel='Войти в аккаунт'
+			backButtonHref='/auth/login'
 		>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
@@ -63,43 +60,15 @@ export function LoginForm() {
 					<FieldSet>
 						<FieldGroup>
 							<Field>
-								<FieldLabel htmlFor='register-email'>
-									Почта
+								<FieldLabel htmlFor='register-password'>
+									Новый пароль
 								</FieldLabel>
-								<Input
-									id='register-email'
-									type='email'
-									placeholder='email@example.com'
-									{...register('email')}
-									disabled={isLoadingLogin}
-								/>
-								{errors.email && (
-									<FieldError>
-										{errors.email.message}
-									</FieldError>
-								)}
-							</Field>
-							<Field>
-								<div className='mb-1 flex w-full items-center justify-between'>
-									<FieldLabel
-										htmlFor='login-password'
-										className='mb-0'
-									>
-										Пароль
-									</FieldLabel>
-									<Link
-										href='/auth/reset-password' // Проверьте правильность вашего роута восстановления
-										className='text-muted-foreground hover:text-primary text-sm underline-offset-4 transition-colors hover:underline'
-									>
-										Забыли пароль?
-									</Link>
-								</div>
 								<Input
 									id='register-password'
 									type='password'
 									placeholder='••••••••'
 									{...register('password')}
-									disabled={isLoadingLogin}
+									disabled={isLoadingNew}
 								/>
 								{errors.password && (
 									<FieldError>
@@ -128,9 +97,9 @@ export function LoginForm() {
 						<Button
 							type='submit'
 							className='w-full cursor-pointer'
-							disabled={isLoadingLogin}
+							disabled={isLoadingNew}
 						>
-							Войти в аккаунт
+							Продолжить
 						</Button>
 					</Field>
 				</FieldGroup>
