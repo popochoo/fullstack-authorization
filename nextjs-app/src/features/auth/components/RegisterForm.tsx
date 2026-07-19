@@ -1,11 +1,12 @@
 'use client'
 
-import { RegisterSchema, TypeRegisterSchema } from '../schemes'
-import { AuthWrapper } from './AuthWrapper'
-
-import { useForm } from 'react-hook-form'
-import ReCAPTCHA from 'react-google-recaptcha'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useTheme } from 'next-themes'
+import { useState } from 'react'
+import ReCAPTCHA from 'react-google-recaptcha'
+import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
+
 import {
 	Button,
 	Field,
@@ -15,10 +16,11 @@ import {
 	FieldSet,
 	Input
 } from '@/shared/components/ui'
-import { useTheme } from 'next-themes'
-import { useState } from 'react'
-import { toast } from 'sonner'
+
 import { useRegisterMutation } from '../hooks'
+import { RegisterSchema, TypeRegisterSchema } from '../schemes'
+
+import { AuthWrapper } from './AuthWrapper'
 
 export function RegisterForm() {
 	const { theme } = useTheme()

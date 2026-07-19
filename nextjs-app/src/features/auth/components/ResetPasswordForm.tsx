@@ -1,10 +1,12 @@
 'use client'
 
-import { ResetPassordSchema, TypeResetPassordSchema } from '../schemes'
-import { AuthWrapper } from './AuthWrapper'
-
-import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useTheme } from 'next-themes'
+import { useState } from 'react'
+import ReCAPTCHA from 'react-google-recaptcha'
+import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
+
 import {
 	Button,
 	Field,
@@ -14,11 +16,11 @@ import {
 	FieldSet,
 	Input
 } from '@/shared/components/ui'
-import { useTheme } from 'next-themes'
-import { useState } from 'react'
-import { toast } from 'sonner'
-import ReCAPTCHA from 'react-google-recaptcha'
+
 import { useResetPasswordMutation } from '../hooks'
+import { ResetPassordSchema, TypeResetPassordSchema } from '../schemes'
+
+import { AuthWrapper } from './AuthWrapper'
 
 export function ResetPasswordForm() {
 	const { theme } = useTheme()

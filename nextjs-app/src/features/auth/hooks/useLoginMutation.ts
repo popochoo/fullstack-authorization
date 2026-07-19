@@ -1,10 +1,12 @@
 import { useMutation } from '@tanstack/react-query'
-import { authService } from '../services'
-import { TypeLoginSchema } from '../schemes'
-import { toastMessageHandler } from '@/shared/utils'
-import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
 import { Dispatch, SetStateAction } from 'react'
+import { toast } from 'sonner'
+
+import { toastMessageHandler } from '@/shared/utils'
+
+import { TypeLoginSchema } from '../schemes'
+import { authService } from '../services'
 
 export function useLoginMutation(
 	setIsShowTwoFactor: Dispatch<SetStateAction<boolean>>

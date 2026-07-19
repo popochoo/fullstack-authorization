@@ -1,4 +1,5 @@
 import { api } from '@/shared/api'
+
 import { TypeLoginSchema, TypeRegisterSchema } from '../schemes'
 import { IUser } from '../types'
 

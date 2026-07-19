@@ -1,6 +1,7 @@
 'use client'
 
 import { type PropsWithChildren } from 'react'
+
 import { TanstackQueryProvider } from './TanstackQueryProvider'
 import { ThemeProvider } from './ThemeProvider'
 import { ToastProvider } from './ToastProvider'

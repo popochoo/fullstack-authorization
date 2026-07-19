@@ -1,3 +1,6 @@
+import Link from 'next/link'
+import { PropsWithChildren } from 'react'
+
 import {
 	Button,
 	Card,
@@ -7,8 +10,7 @@ import {
 	CardHeader,
 	CardTitle
 } from '@/shared/components/ui'
-import Link from 'next/link'
-import { PropsWithChildren } from 'react'
+
 import { AuthSocial } from './AuthSocial'
 
 interface AuthWrapperProps {
