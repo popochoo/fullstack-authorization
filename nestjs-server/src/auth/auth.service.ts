@@ -86,7 +86,7 @@ export class AuthService {
 			)
 		}
 
-		if (user.IsTwoFactorEnabled) {
+		if (user.isTwoFactorEnabled) {
 			if (!dto.code) {
 				await this.twoFactorAuthService.sendTwoFactorToken(user.email)
 

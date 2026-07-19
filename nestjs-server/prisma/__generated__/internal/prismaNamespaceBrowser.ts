@@ -80,7 +80,7 @@ export const UserScalarFieldEnum = {
   picture: 'picture',
   role: 'role',
   isVerified: 'isVerified',
-  IsTwoFactorEnabled: 'IsTwoFactorEnabled',
+  isTwoFactorEnabled: 'isTwoFactorEnabled',
   method: 'method',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

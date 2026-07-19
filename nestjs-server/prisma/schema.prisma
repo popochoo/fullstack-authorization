@@ -19,7 +19,7 @@ model User {
   role UserRole @default(REGULAR)
 
   isVerified         Boolean @default(false) @map("is_verified")
-  IsTwoFactorEnabled Boolean @default(false) @map("is_two_factor_enabled")
+  isTwoFactorEnabled Boolean @default(false) @map("is_two_factor_enabled")
 
   method AuthMethod
 

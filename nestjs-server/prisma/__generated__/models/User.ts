@@ -32,7 +32,7 @@ export type UserMinAggregateOutputType = {
   picture: string | null
   role: $Enums.UserRole | null
   isVerified: boolean | null
-  IsTwoFactorEnabled: boolean | null
+  isTwoFactorEnabled: boolean | null
   method: $Enums.AuthMethod | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -46,7 +46,7 @@ export type UserMaxAggregateOutputType = {
   picture: string | null
   role: $Enums.UserRole | null
   isVerified: boolean | null
-  IsTwoFactorEnabled: boolean | null
+  isTwoFactorEnabled: boolean | null
   method: $Enums.AuthMethod | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -60,7 +60,7 @@ export type UserCountAggregateOutputType = {
   picture: number
   role: number
   isVerified: number
-  IsTwoFactorEnabled: number
+  isTwoFactorEnabled: number
   method: number
   createdAt: number
   updatedAt: number
@@ -76,7 +76,7 @@ export type UserMinAggregateInputType = {
   picture?: true
   role?: true
   isVerified?: true
-  IsTwoFactorEnabled?: true
+  isTwoFactorEnabled?: true
   method?: true
   createdAt?: true
   updatedAt?: true
@@ -90,7 +90,7 @@ export type UserMaxAggregateInputType = {
   picture?: true
   role?: true
   isVerified?: true
-  IsTwoFactorEnabled?: true
+  isTwoFactorEnabled?: true
   method?: true
   createdAt?: true
   updatedAt?: true
@@ -104,7 +104,7 @@ export type UserCountAggregateInputType = {
   picture?: true
   role?: true
   isVerified?: true
-  IsTwoFactorEnabled?: true
+  isTwoFactorEnabled?: true
   method?: true
   createdAt?: true
   updatedAt?: true
@@ -191,7 +191,7 @@ export type UserGroupByOutputType = {
   picture: string | null
   role: $Enums.UserRole
   isVerified: boolean
-  IsTwoFactorEnabled: boolean
+  isTwoFactorEnabled: boolean
   method: $Enums.AuthMethod
   createdAt: Date
   updatedAt: Date
@@ -226,7 +226,7 @@ export type UserWhereInput = {
   picture?: Prisma.StringNullableFilter<"User"> | string | null
   role?: Prisma.EnumUserRoleFilter<"User"> | $Enums.UserRole
   isVerified?: Prisma.BoolFilter<"User"> | boolean
-  IsTwoFactorEnabled?: Prisma.BoolFilter<"User"> | boolean
+  isTwoFactorEnabled?: Prisma.BoolFilter<"User"> | boolean
   method?: Prisma.EnumAuthMethodFilter<"User"> | $Enums.AuthMethod
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
@@ -241,7 +241,7 @@ export type UserOrderByWithRelationInput = {
   picture?: Prisma.SortOrderInput | Prisma.SortOrder
   role?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
-  IsTwoFactorEnabled?: Prisma.SortOrder
+  isTwoFactorEnabled?: Prisma.SortOrder
   method?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -259,7 +259,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   picture?: Prisma.StringNullableFilter<"User"> | string | null
   role?: Prisma.EnumUserRoleFilter<"User"> | $Enums.UserRole
   isVerified?: Prisma.BoolFilter<"User"> | boolean
-  IsTwoFactorEnabled?: Prisma.BoolFilter<"User"> | boolean
+  isTwoFactorEnabled?: Prisma.BoolFilter<"User"> | boolean
   method?: Prisma.EnumAuthMethodFilter<"User"> | $Enums.AuthMethod
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
@@ -274,7 +274,7 @@ export type UserOrderByWithAggregationInput = {
   picture?: Prisma.SortOrderInput | Prisma.SortOrder
   role?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
-  IsTwoFactorEnabled?: Prisma.SortOrder
+  isTwoFactorEnabled?: Prisma.SortOrder
   method?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -294,7 +294,7 @@ export type UserScalarWhereWithAggregatesInput = {
   picture?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   role?: Prisma.EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
   isVerified?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
-  IsTwoFactorEnabled?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
+  isTwoFactorEnabled?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   method?: Prisma.EnumAuthMethodWithAggregatesFilter<"User"> | $Enums.AuthMethod
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -308,7 +308,7 @@ export type UserCreateInput = {
   picture?: string | null
   role?: $Enums.UserRole
   isVerified?: boolean
-  IsTwoFactorEnabled?: boolean
+  isTwoFactorEnabled?: boolean
   method: $Enums.AuthMethod
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -323,7 +323,7 @@ export type UserUncheckedCreateInput = {
   picture?: string | null
   role?: $Enums.UserRole
   isVerified?: boolean
-  IsTwoFactorEnabled?: boolean
+  isTwoFactorEnabled?: boolean
   method: $Enums.AuthMethod
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -338,7 +338,7 @@ export type UserUpdateInput = {
   picture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  IsTwoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTwoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   method?: Prisma.EnumAuthMethodFieldUpdateOperationsInput | $Enums.AuthMethod
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -353,7 +353,7 @@ export type UserUncheckedUpdateInput = {
   picture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  IsTwoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTwoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   method?: Prisma.EnumAuthMethodFieldUpdateOperationsInput | $Enums.AuthMethod
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -368,7 +368,7 @@ export type UserCreateManyInput = {
   picture?: string | null
   role?: $Enums.UserRole
   isVerified?: boolean
-  IsTwoFactorEnabled?: boolean
+  isTwoFactorEnabled?: boolean
   method: $Enums.AuthMethod
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -382,7 +382,7 @@ export type UserUpdateManyMutationInput = {
   picture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  IsTwoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTwoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   method?: Prisma.EnumAuthMethodFieldUpdateOperationsInput | $Enums.AuthMethod
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -396,7 +396,7 @@ export type UserUncheckedUpdateManyInput = {
   picture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  IsTwoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTwoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   method?: Prisma.EnumAuthMethodFieldUpdateOperationsInput | $Enums.AuthMethod
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -410,7 +410,7 @@ export type UserCountOrderByAggregateInput = {
   picture?: Prisma.SortOrder
   role?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
-  IsTwoFactorEnabled?: Prisma.SortOrder
+  isTwoFactorEnabled?: Prisma.SortOrder
   method?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -424,7 +424,7 @@ export type UserMaxOrderByAggregateInput = {
   picture?: Prisma.SortOrder
   role?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
-  IsTwoFactorEnabled?: Prisma.SortOrder
+  isTwoFactorEnabled?: Prisma.SortOrder
   method?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -438,7 +438,7 @@ export type UserMinOrderByAggregateInput = {
   picture?: Prisma.SortOrder
   role?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
-  IsTwoFactorEnabled?: Prisma.SortOrder
+  isTwoFactorEnabled?: Prisma.SortOrder
   method?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -497,7 +497,7 @@ export type UserCreateWithoutAccountsInput = {
   picture?: string | null
   role?: $Enums.UserRole
   isVerified?: boolean
-  IsTwoFactorEnabled?: boolean
+  isTwoFactorEnabled?: boolean
   method: $Enums.AuthMethod
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -511,7 +511,7 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   picture?: string | null
   role?: $Enums.UserRole
   isVerified?: boolean
-  IsTwoFactorEnabled?: boolean
+  isTwoFactorEnabled?: boolean
   method: $Enums.AuthMethod
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -541,7 +541,7 @@ export type UserUpdateWithoutAccountsInput = {
   picture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  IsTwoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTwoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   method?: Prisma.EnumAuthMethodFieldUpdateOperationsInput | $Enums.AuthMethod
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -555,7 +555,7 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   picture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  IsTwoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTwoFactorEnabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   method?: Prisma.EnumAuthMethodFieldUpdateOperationsInput | $Enums.AuthMethod
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -600,7 +600,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   picture?: boolean
   role?: boolean
   isVerified?: boolean
-  IsTwoFactorEnabled?: boolean
+  isTwoFactorEnabled?: boolean
   method?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -616,7 +616,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   picture?: boolean
   role?: boolean
   isVerified?: boolean
-  IsTwoFactorEnabled?: boolean
+  isTwoFactorEnabled?: boolean
   method?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -630,7 +630,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   picture?: boolean
   role?: boolean
   isVerified?: boolean
-  IsTwoFactorEnabled?: boolean
+  isTwoFactorEnabled?: boolean
   method?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -644,13 +644,13 @@ export type UserSelectScalar = {
   picture?: boolean
   role?: boolean
   isVerified?: boolean
-  IsTwoFactorEnabled?: boolean
+  isTwoFactorEnabled?: boolean
   method?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "password" | "displayName" | "picture" | "role" | "isVerified" | "IsTwoFactorEnabled" | "method" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "password" | "displayName" | "picture" | "role" | "isVerified" | "isTwoFactorEnabled" | "method" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -671,7 +671,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     picture: string | null
     role: $Enums.UserRole
     isVerified: boolean
-    IsTwoFactorEnabled: boolean
+    isTwoFactorEnabled: boolean
     method: $Enums.AuthMethod
     createdAt: Date
     updatedAt: Date
@@ -1106,7 +1106,7 @@ export interface UserFieldRefs {
   readonly picture: Prisma.FieldRef<"User", 'String'>
   readonly role: Prisma.FieldRef<"User", 'UserRole'>
   readonly isVerified: Prisma.FieldRef<"User", 'Boolean'>
-  readonly IsTwoFactorEnabled: Prisma.FieldRef<"User", 'Boolean'>
+  readonly isTwoFactorEnabled: Prisma.FieldRef<"User", 'Boolean'>
   readonly method: Prisma.FieldRef<"User", 'AuthMethod'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
